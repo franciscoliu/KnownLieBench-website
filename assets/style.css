@@ -114,7 +114,11 @@ table.heat { border-collapse: separate; border-spacing: 3px; font-size: 11.5px; 
 .tag.ins { background: #F6DCD4; color: #96281B; }
 .cond p { font-size: 13px; color: var(--muted); margin: 0; }
 .figure { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; overflow-x: auto; }
-.figure img { max-width: 100%; display: block; margin: 0 auto; }
+.figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+.figure.breakout { width: min(1360px, calc(100vw - 32px)); position: relative;
+                   left: 50%; transform: translateX(-50%); }
+.fig-zoom { display: block; }
+.fig-zoom:hover { opacity: .95; }
 .figure figcaption { font-size: 12.5px; color: var(--muted); margin-top: 10px; text-align: center; }
 .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 @media (max-width: 760px) { .trust-grid { grid-template-columns: 1fr; } }
