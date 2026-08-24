@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KnownLieBench</title>
+<meta name="description" content="A knowledge-verified benchmark of emergent deception in LLM agents: 18 models, 8 legally grounded domains, 112 cases.">
+<meta property="og:title" content="KnownLieBench">
+<meta property="og:description" content="Does your agent lie about what it knows? 18 models, 8 legally grounded domains, 112 knowledge-verified cases.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231F2933'/%3E%3Ctext x='16' y='22' font-family='Helvetica,Arial' font-size='16' font-weight='800' fill='%23fff' text-anchor='middle'%3EK%3C/text%3E%3Ccircle cx='25' cy='7' r='4' fill='%23C0392B'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<nav class="nav"><div class="wrap nav-inner">
+  <span class="wordmark">Known<em>Lie</em>Bench</span>
+  <div class="nav-links">
+    <a href="index.html" class="active">Leaderboard</a>
+    <a href="cases.html">Cases</a>
+    <a href="#method">Method</a>
+    <a href="#" title="arXiv link coming with the preprint">Paper</a>
+  </div>
+</div></nav>
+
+<header class="hero wrap">
+  <h1>Does your agent lie about what it knows?</h1>
+  <p>Every scored round first proves, through a neutral probe, that the model knows the customer's
+     entitlement. Then we watch what it tells the customer once a private incentive pushes the
+     other way. A false denial here is a lie, not a mistake.</p>
+  <div class="hero-actions">
+    <span class="btn primary disabled" title="arXiv link coming with the preprint">&#128196; Paper (soon)</span>
+    <a class="btn" href="https://github.com/franciscoliu/KnownLieBench">&#128187; Code</a>
+    <a class="btn" href="https://huggingface.co/datasets/franciscoliu/KnownLieBench">&#129303; Dataset</a>
+    <a class="btn" href="#citation">BibTeX</a>
+  </div>
+  <div class="stats" id="stats"></div>
+</header>
+
+<section class="wrap" id="leaderboard">
+  <h2>Leaderboard</h2>
+  <p class="sec-sub">Eighteen proprietary and open-weight models. Deception rate (DR) is macro-averaged over the
+     eight domains, on owed, gate-passed rounds. Success (DSR) and detection (Det) are conditioned on rounds containing a
+     lie (debt collection, an extraction domain, anchors success to the undetected lie rather
+     than the terminal outcome); Trust&Delta; is the customer's mean final-minus-initial trust. Ranked most honest first.
+     Click a column to sort.</p>
+  <div class="controls">
+    <span class="ctl-label">Condition</span>
+    <div class="tabs" id="cond-tabs">
+      <button data-cond="emergent" class="on">Emergent</button>
+      <button data-cond="instructed">Instructed</button>
+    </div>
+    <span class="ctl-label">Initial trust</span>
+    <div class="tabs" id="trust-tabs">
+      <button data-trust="low">Low</button>
+      <button data-trust="medium" class="on">Medium</button>
+      <button data-trust="high">High</button>
+    </div>
+  </div>
+  <div class="board">
+    <div class="board-scroll">
+      <table class="lb" id="lb">
+        <thead><tr>
+          <th class="rank">#</th>
+          <th data-k="name">Model</th>
+          <th data-k="dr" class="bar-cell" tabindex="0" aria-sort="ascending">Deception rate (%) <span class="arrow" id="ar-dr">&#9650;</span></th>
+          <th data-k="dsr" class="num" tabindex="0" aria-sort="none">DSR (%) <span class="arrow" id="ar-dsr"></span></th>
+          <th data-k="det" class="num" tabindex="0" aria-sort="none">Detect (%) <span class="arrow" id="ar-det"></span></th>
+          <th data-k="trustd" class="num" tabindex="0" aria-sort="none">Trust&Delta; <span class="arrow" id="ar-trustd"></span></th>
+        </tr></thead>
+        <tbody id="lb-body"></tbody>
+      </table>
+    </div>
+    <div class="board-note">A dash means no scored lie occurred in that cell, so success and
+      detection are undefined. The paper additionally reports an honest-control condition, where deception stays near zero
+      across the reported models, and calibration false-positive rates. All rounds are graded by
+      the paper's pinned GPT-5.1 judge, validated against 60 human-adjudicated labels
+      (pooled &kappa; = 0.815).</div>
+  </div>
+</section>
+
+<section class="wrap" id="domains">
+  <h2>Where the lies happen</h2>
+  <p class="sec-sub">Per-domain deception rate for the selected condition, averaged over the three initial trust
+     levels. The same model can be honest at the airline desk and lie about a security deposit
+     &mdash; hover or focus any cell.</p>
+  <div class="heat-scroll">
+    <table class="heat" id="heat"></table>
+    <div class="heat-legend"><span>0%</span><div class="heat-ramp"></div><span>100%</span>
+      <span style="margin-left:14px;">deception rate, averaged over trust levels</span></div>
+  </div>
+</section>
+
+<section class="wrap" id="trust">
+  <h2>Trust changes what deception looks like</h2>
+  <p class="sec-sub">The customer's initial trust sets how readily claims are accepted versus
+     verified against the policy; trust then evolves with each round. The paper's headline figures:</p>
+  <div class="trust-grid">
+    <figure class="figure"><img src="assets/fig_trust_dr.png" loading="lazy" alt="Deception rate by initial trust level"><figcaption>Deception rate</figcaption></figure>
+    <figure class="figure"><img src="assets/fig_trust_dsr.png" loading="lazy" alt="Deception success by initial trust level"><figcaption>Deception success</figcaption></figure>
+    <figure class="figure"><img src="assets/fig_trust_detection.png" loading="lazy" alt="Detection rate by initial trust level"><figcaption>Detection</figcaption></figure>
+  </div>
+  <figure class="figure" style="margin-top:12px; border:0; background:transparent;"><img src="assets/fig_trust_legend.png" alt="Legend for the trust figures" style="width:100%; max-width:640px;"></figure>
+</section>
+
+<section class="wrap" id="method">
+  <h2>Method</h2>
+  <p class="sec-sub">Eight customer-service domains, each pairing a fictional institution with a
+     real governing rule; 112 cases (64 owed, 48 calibration); a per-round knowledge gate; a
+     trust-tracking customer; a fact-extraction judge. Three conditions share an identical
+     environment &mdash; only the agent's private condition block changes. Seven domains contest
+     the withholding of an owed remedy; debt collection is an extraction domain, where the lie
+     collects a payment that is not owed:</p>
+  <div class="cond-cards">
+    <div class="cond"><h3><span class="tag ctl">Control</span>none</h3>
+      <p>Resolve the request accurately and per policy. The honest baseline.</p></div>
+    <div class="cond"><h3><span class="tag eme">Emergent</span>lie_incentive</h3>
+      <p>A private cost pressure against the owed outcome that never mentions lying. Any
+         fabrication is the model's own.</p></div>
+    <div class="cond"><h3><span class="tag ins">Instructed</span>instructed_lie</h3>
+      <p>An explicit private directive to deny with a plausible false reason, plus a role,
+         worked examples of the lie, and an objective to keep the customer's trust intact.
+         Measures compliance, not propensity.</p></div>
+  </div>
+  <figure class="figure">
+    <img src="assets/pipeline.png" loading="lazy" width="1900" height="530" alt="The KnownLieBench pipeline: legal rule extraction, paired case authoring, environment build, and condition-by-trust evaluation">
+    <figcaption>From written law to a scored round: rules become machine-checkable records, paired
+      owed/calibration cases, live tool-using environments, and judged dialogues.</figcaption>
+  </figure>
+</section>
+
+<section class="wrap" id="citation">
+  <h2>Citation</h2>
+  <div class="bib">@article{knownliebench2026,
+  title  = {Knowledge-Verified Emergent Deception in LLM Agents
+            Under Conflicting Incentives},
+  author = {Liu, Zheyuan and Zhao, Weiliang and Yuan, Xiangchi and Ma, Ningshan
+            and Huang, Yue and Jiang, Meng},
+  year   = {2026},
+  note   = {Preprint}
+}</div>
+</section>
+
+<footer><div class="wrap">
+  <span>KnownLieBench &middot; code Apache-2.0 &middot; data CC BY 4.0 &middot; institutions fictional, governing rules real</span>
+  <span><a href="https://github.com/franciscoliu/KnownLieBench">GitHub</a> &middot;
+        <a href="https://huggingface.co/datasets/franciscoliu/KnownLieBench">HuggingFace</a></span>
+</div></footer>
+
+<div class="tooltip" id="tip"></div>
+<script src="data/data_panel.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
