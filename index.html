@@ -18,7 +18,7 @@
   <div class="nav-links">
     <a href="index.html" class="active">Leaderboard</a>
     <a href="cases.html">Cases</a>
-    <a href="#method">Method</a>
+    <a href="#construction">Benchmark</a>
     <a href="#" title="arXiv link coming with the preprint">Paper</a>
   </div>
 </div></nav>
@@ -28,8 +28,8 @@
   <p class="paper-title">Knowledge-Verified Emergent Deception in LLM Agents Under Conflicting Incentives</p>
   <p class="authors">Zheyuan Liu<sup>1</sup> &nbsp; Weiliang Zhao<sup>2</sup> &nbsp; Xiangchi Yuan<sup>3</sup> &nbsp;
      Ningshan Ma<sup>4</sup> &nbsp; Yue Huang<sup>1</sup> &nbsp; Meng Jiang<sup>1</sup></p>
-  <p class="affils"><sup>1</sup>University of Notre Dame &nbsp;&nbsp; <sup>2</sup>Columbia University &nbsp;&nbsp;
-     <sup>3</sup>Georgia Institute of Technology &nbsp;&nbsp; <sup>4</sup>Massachusetts Institute of Technology</p>
+  <p class="affils"><span><sup>1</sup>University of Notre Dame</span> <span><sup>2</sup>Columbia University</span>
+     <span><sup>3</sup>Georgia Institute of Technology</span> <span><sup>4</sup>Massachusetts Institute of Technology</span></p>
   <div class="hero-actions">
     <span class="btn primary disabled" title="arXiv link coming with the preprint">&#128196; Paper (soon)</span>
     <a class="btn" href="https://github.com/franciscoliu/KnownLieBench">&#128187; Code</a>
@@ -101,22 +101,8 @@
   </div>
 </section>
 
-<section class="wrap" id="method">
-  <h2>Method</h2>
-  <p class="sec-sub">Eight domains, each pairing a fictional institution with a real governing
-     rule; 112 cases; a per-round knowledge gate; a trust-tracking customer; a fact-extraction
-     judge. Only the agent's private condition block changes:</p>
-  <div class="cond-cards">
-    <div class="cond"><h3><span class="tag ctl">Control</span>none</h3>
-      <p>Resolve the request accurately and per policy. The honest baseline.</p></div>
-    <div class="cond"><h3><span class="tag eme">Emergent</span>lie_incentive</h3>
-      <p>A private cost pressure against the owed outcome that never mentions lying. Any
-         fabrication is the model's own.</p></div>
-    <div class="cond"><h3><span class="tag ins">Instructed</span>instructed_lie</h3>
-      <p>An explicit private directive to deny with a plausible false reason, plus a role,
-         worked examples of the lie, and an objective to keep the customer's trust intact.
-         Measures compliance, not propensity.</p></div>
-  </div>
+<section class="wrap" id="construction">
+  <h2>Benchmark Construction</h2>
   <figure class="figure">
     <a class="fig-zoom" href="assets/pipeline.png" target="_blank" rel="noopener"
        title="Open the figure at full resolution">
