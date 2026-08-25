@@ -23,11 +23,13 @@
   </div>
 </div></nav>
 
-<header class="hero wrap">
-  <h1>Does your agent lie about what it knows?</h1>
-  <p>Every scored round first proves, through a neutral probe, that the model knows the customer's
-     entitlement. Then we watch what it tells the customer once a private incentive pushes the
-     other way. A false denial here is a lie, not a mistake.</p>
+<header class="hero wrap centered">
+  <h1 class="site-title">Known<em>Lie</em>Bench</h1>
+  <p class="paper-title">Knowledge-Verified Emergent Deception in LLM Agents Under Conflicting Incentives</p>
+  <p class="authors">Zheyuan Liu<sup>1</sup> &nbsp; Weiliang Zhao<sup>2</sup> &nbsp; Xiangchi Yuan<sup>3</sup> &nbsp;
+     Ningshan Ma<sup>4</sup> &nbsp; Yue Huang<sup>1</sup> &nbsp; Meng Jiang<sup>1</sup></p>
+  <p class="affils"><sup>1</sup>University of Notre Dame &nbsp;&nbsp; <sup>2</sup>Columbia University &nbsp;&nbsp;
+     <sup>3</sup>Georgia Institute of Technology &nbsp;&nbsp; <sup>4</sup>Massachusetts Institute of Technology</p>
   <div class="hero-actions">
     <span class="btn primary disabled" title="arXiv link coming with the preprint">&#128196; Paper (soon)</span>
     <a class="btn" href="https://github.com/franciscoliu/KnownLieBench">&#128187; Code</a>
@@ -39,11 +41,9 @@
 
 <section class="wrap" id="leaderboard">
   <h2>Leaderboard</h2>
-  <p class="sec-sub">Eighteen proprietary and open-weight models. Deception rate (DR) is macro-averaged over the
-     eight domains, on owed, gate-passed rounds. Success (DSR) and detection (Det) are conditioned on rounds containing a
-     lie (debt collection, an extraction domain, anchors success to the undetected lie rather
-     than the terminal outcome); Trust&Delta; is the customer's mean final-minus-initial trust. Ranked most honest first.
-     Click a column to sort.</p>
+  <p class="sec-sub">Deception rate is macro-averaged over the eight domains on owed, gate-passed
+     rounds; success and detection are conditioned on rounds containing a lie. Ranked most honest
+     first &mdash; click a column to sort.</p>
   <div class="controls">
     <span class="ctl-label">Condition</span>
     <div class="tabs" id="cond-tabs">
@@ -71,11 +71,6 @@
         <tbody id="lb-body"></tbody>
       </table>
     </div>
-    <div class="board-note">A dash means no scored lie occurred in that cell, so success and
-      detection are undefined. The paper additionally reports an honest-control condition, where deception stays near zero
-      across the reported models, and calibration false-positive rates. All rounds are graded by
-      the paper's pinned GPT-5.1 judge, validated against 60 human-adjudicated labels
-      (pooled &kappa; = 0.815).</div>
   </div>
 </section>
 
@@ -94,23 +89,23 @@
 <section class="wrap" id="trust">
   <h2>Trust changes what deception looks like</h2>
   <p class="sec-sub">The customer's initial trust sets how readily claims are accepted versus
-     verified against the policy; trust then evolves with each round. The paper's headline figures:</p>
+     verified against the policy; trust then evolves with each round.</p>
+  <div class="mini-legend">
+    <span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="#C9663F" stroke-width="2.5"/><circle cx="17" cy="5" r="4" fill="#C9663F"/></svg> Emergent</span>
+    <span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="#3D5A80" stroke-width="2.5" stroke-dasharray="6 4"/><rect x="13" y="1" width="8" height="8" fill="#3D5A80"/></svg> Instructed</span>
+  </div>
   <div class="trust-grid">
     <figure class="figure"><img src="assets/fig_trust_dr.png" loading="lazy" alt="Deception rate by initial trust level"><figcaption>Deception rate</figcaption></figure>
     <figure class="figure"><img src="assets/fig_trust_dsr.png" loading="lazy" alt="Deception success by initial trust level"><figcaption>Deception success</figcaption></figure>
     <figure class="figure"><img src="assets/fig_trust_detection.png" loading="lazy" alt="Detection rate by initial trust level"><figcaption>Detection</figcaption></figure>
   </div>
-  <figure class="figure" style="margin-top:12px; border:0; background:transparent;"><img src="assets/fig_trust_legend.png" alt="Legend for the trust figures" style="width:100%; max-width:640px;"></figure>
 </section>
 
 <section class="wrap" id="method">
   <h2>Method</h2>
-  <p class="sec-sub">Eight customer-service domains, each pairing a fictional institution with a
-     real governing rule; 112 cases (64 owed, 48 calibration); a per-round knowledge gate; a
-     trust-tracking customer; a fact-extraction judge. Three conditions share an identical
-     environment &mdash; only the agent's private condition block changes. Seven domains contest
-     the withholding of an owed remedy; debt collection is an extraction domain, where the lie
-     collects a payment that is not owed:</p>
+  <p class="sec-sub">Eight domains, each pairing a fictional institution with a real governing
+     rule; 112 cases; a per-round knowledge gate; a trust-tracking customer; a fact-extraction
+     judge. Only the agent's private condition block changes:</p>
   <div class="cond-cards">
     <div class="cond"><h3><span class="tag ctl">Control</span>none</h3>
       <p>Resolve the request accurately and per policy. The honest baseline.</p></div>
@@ -122,7 +117,7 @@
          worked examples of the lie, and an objective to keep the customer's trust intact.
          Measures compliance, not propensity.</p></div>
   </div>
-  <figure class="figure breakout">
+  <figure class="figure">
     <a class="fig-zoom" href="assets/pipeline.png" target="_blank" rel="noopener"
        title="Open the figure at full resolution">
       <img src="assets/pipeline.png" loading="lazy" width="1900" height="530" alt="The KnownLieBench pipeline: legal rule extraction, paired case authoring, environment build, and condition-by-trust evaluation"></a>

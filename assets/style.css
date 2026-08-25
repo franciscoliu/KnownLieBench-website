@@ -31,10 +31,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline
 .nav-links a.active { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--green); }
 
 /* ---- hero ---- */
-.hero { padding-top: 52px; padding-bottom: 8px; }
-.hero h1 { font-size: 34px; font-weight: 800; letter-spacing: -.015em; margin: 0; max-width: 24ch; line-height: 1.15; text-wrap: balance; }
-.hero p { color: var(--muted); max-width: 60ch; margin: 12px 0 0; font-size: 15.5px; }
-.hero-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+.hero { padding-top: 58px; padding-bottom: 10px; }
+.hero.centered { text-align: center; }
+.site-title { font-size: 46px; font-weight: 800; letter-spacing: -.02em; margin: 0; line-height: 1.1; }
+.site-title em { color: var(--red); font-style: normal; }
+.paper-title { font-size: 17.5px; color: var(--ink); font-weight: 600; max-width: 56ch;
+               margin: 14px auto 0; line-height: 1.4; text-wrap: balance; }
+.authors { font-size: 15px; margin: 18px auto 0; max-width: 70ch; line-height: 1.7; }
+.authors sup, .affils sup { color: var(--muted); }
+.affils { font-size: 13px; color: var(--muted); margin: 6px auto 0; max-width: 76ch; line-height: 1.7; }
+.hero-actions { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+.hero.centered .hero-actions, .hero.centered .stats { justify-content: center; }
 .btn { display: inline-flex; align-items: center; gap: 7px; border-radius: 999px; padding: 8px 18px;
        font-size: 13.5px; font-weight: 600; border: 1.5px solid var(--ink); color: var(--ink); background: var(--panel); }
 .btn.primary { background: var(--ink); color: #fff; }
@@ -43,19 +50,19 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline
 .btn.disabled:hover { opacity: .55; }
 
 /* ---- stat tiles ---- */
-.stats { display: flex; gap: 12px; margin: 26px 0 8px; flex-wrap: wrap; }
+.stats { display: flex; gap: 12px; margin: 30px 0 8px; flex-wrap: wrap; }
 .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 20px; min-width: 108px; }
 .stat b { display: block; font-size: 23px; font-weight: 800; font-variant-numeric: tabular-nums; }
 .stat span { font-size: 11.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
 
 /* ---- sections ---- */
-section { padding: 34px 0 6px; }
+section { padding: 58px 0 8px; }
 section[id] { scroll-margin-top: 70px; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 .sec-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 4px; }
 h2 { font-size: 22px; font-weight: 800; letter-spacing: -.01em; margin: 0 0 4px; }
-.sec-sub { color: var(--muted); font-size: 14px; max-width: 72ch; margin: 2px 0 16px; }
+.sec-sub { color: var(--muted); font-size: 14px; max-width: 72ch; margin: 4px 0 20px; }
 
 /* ---- controls ---- */
 .controls { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin: 6px 0 14px; }
@@ -101,6 +108,9 @@ table.heat { border-collapse: separate; border-spacing: 3px; font-size: 11.5px; 
 .heat-legend { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--muted); margin-top: 10px; }
 .heat-ramp { width: 140px; height: 10px; border-radius: 5px;
              background: linear-gradient(90deg, #FBF1ED, #EEB4A3, #CD5F4E, #C0392B, #96281B); }
+
+.mini-legend { display: flex; gap: 26px; align-items: center; font-size: 13.5px; margin: 0 0 14px; }
+.mini-legend span { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); }
 
 /* ---- method ---- */
 .cond-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0; }
@@ -170,5 +180,5 @@ table.heat { border-collapse: separate; border-spacing: 3px; font-size: 11.5px; 
 .bib { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px;
        font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; overflow-x: auto;
        white-space: pre; line-height: 1.5; color: var(--ink); }
-footer { border-top: 1px solid var(--line); margin-top: 44px; padding: 22px 0 40px; color: var(--muted); font-size: 13px; }
+footer { border-top: 1px solid var(--line); margin-top: 64px; padding: 24px 0 44px; color: var(--muted); font-size: 13px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
