@@ -57,7 +57,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline
 .stat span { font-size: 11.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
 
 /* ---- sections ---- */
-section.wrap { padding-top: 96px; padding-bottom: 14px; }
+section.wrap { padding-top: 72px; padding-bottom: 12px; }
 section[id] { scroll-margin-top: 70px; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -110,9 +110,6 @@ table.heat { border-collapse: separate; border-spacing: 3px; font-size: 11.5px; 
 .heat-ramp { width: 140px; height: 10px; border-radius: 5px;
              background: linear-gradient(90deg, #FBF1ED, #EEB4A3, #CD5F4E, #C0392B, #96281B); }
 
-.mini-legend { display: flex; gap: 26px; align-items: center; font-size: 13.5px; margin: 0 0 14px; }
-.mini-legend span { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); }
-
 /* ---- method ---- */
 .figure { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; overflow-x: auto; }
 .figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
@@ -121,9 +118,6 @@ table.heat { border-collapse: separate; border-spacing: 3px; font-size: 11.5px; 
 .fig-zoom { display: block; }
 .fig-zoom:hover { opacity: .95; }
 .figure figcaption { font-size: 12.5px; color: var(--muted); margin-top: 10px; text-align: center; }
-.trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-@media (max-width: 760px) { .trust-grid { grid-template-columns: 1fr; } }
-.trust-grid .figure { padding: 10px; }
 
 /* ---- cases page ---- */
 .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0; align-items: center; }
