@@ -37,9 +37,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline
 .site-title em { color: var(--red); font-style: normal; }
 .paper-title { font-size: 17.5px; color: var(--ink); font-weight: 600; max-width: 56ch;
                margin: 14px auto 0; line-height: 1.4; text-wrap: balance; }
-.authors { font-size: 18px; margin: 20px auto 0; max-width: 72ch; line-height: 1.75; }
+.authors { font-size: 21px; margin: 22px auto 0; max-width: 76ch; line-height: 1.75; }
 .authors sup, .affils sup { color: var(--muted); }
-.affils { font-size: 15.5px; color: var(--muted); margin: 8px auto 0; max-width: 80ch; line-height: 1.75; }
+.affils { font-size: 17px; color: var(--muted); margin: 10px auto 0; max-width: 84ch; line-height: 1.75; }
 .affils span { white-space: nowrap; margin: 0 10px; }
 .hero-actions { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
 .hero.centered .hero-actions, .hero.centered .stats { justify-content: center; }
@@ -57,7 +57,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline
 .stat span { font-size: 11.5px; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
 
 /* ---- sections ---- */
-section { padding: 88px 0 10px; }
+section.wrap { padding-top: 96px; padding-bottom: 14px; }
 section[id] { scroll-margin-top: 70px; }
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
